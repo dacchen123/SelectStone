@@ -34,6 +34,7 @@ public class SpringRunnerTest {
 
     /**
      * 数据库中没存入数据，测试不通过
+     * 在第06节：模板模式处理抽奖流程代码完成后即可通过测试
      */
     @Test
     public void test_drawExec() {
