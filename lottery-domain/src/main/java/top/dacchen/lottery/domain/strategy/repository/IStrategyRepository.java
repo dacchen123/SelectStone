@@ -1,7 +1,8 @@
 package top.dacchen.lottery.domain.strategy.repository;
 
 import top.dacchen.lottery.domain.strategy.model.aggregates.StrategyRich;
-import top.dacchen.lottery.infrastructure.po.Award;
+import top.dacchen.lottery.domain.strategy.model.vo.AwardBriefVO;
+
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface IStrategyRepository {
 
     StrategyRich queryStrategyRich(Long strategyId);
 
-    Award queryAwardInfo(String awardId);
+    AwardBriefVO queryAwardInfo(String awardId);
 
     List<String> queryNoStockStrategyAwardList(Long strategyId);
 
