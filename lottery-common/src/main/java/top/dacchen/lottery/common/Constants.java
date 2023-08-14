@@ -167,4 +167,18 @@ public class Constants {
             this.info = info;
         }
     }
+
+    /**
+     * ID 生成策略
+     */
+    public enum Ids {
+        /**
+         * 雪花算法
+         */
+        SnowFlake,
+        /** 日期算法 */
+        ShortCode,
+        /** 随机算法 */
+        RandomNumeric;
+    }
 }
