@@ -3,7 +3,7 @@ package top.dacchen.lottery.domain.strategy.service.algorithm.impl;
 import org.springframework.stereotype.Component;
 import top.dacchen.lottery.common.StrategyModeEnum;
 import top.dacchen.lottery.domain.strategy.annotation.StrategyMode;
-import top.dacchen.lottery.domain.strategy.model.vo.AwardRateInfo;
+import top.dacchen.lottery.domain.strategy.model.vo.AwardRateVO;
 import top.dacchen.lottery.domain.strategy.service.algorithm.BaseAlgorithm;
 
 import java.math.BigDecimal;
@@ -27,9 +27,9 @@ public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
         BigDecimal differenceDenominator = BigDecimal.ZERO;
 
         // 排除掉不在抽奖范围的奖品ID集合
-        List<AwardRateInfo> differenceAwardRateList = new ArrayList<>();
-        List<AwardRateInfo> awardRateIntervalValList = awardRateInfoMap.get(strategyId);
-        for (AwardRateInfo awardRateInfo : awardRateIntervalValList) {
+        List<AwardRateVO> differenceAwardRateList = new ArrayList<>();
+        List<AwardRateVO> awardRateIntervalValList = awardRateInfoMap.get(strategyId);
+        for (AwardRateVO awardRateInfo : awardRateIntervalValList) {
             String awardId = awardRateInfo.getAwardId();
             if (excludeAwardIds.contains(awardId)) {
                 continue;
@@ -53,7 +53,7 @@ public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
         // 循环获取直至落在概率范围内的奖品
         String awardId = "";
         int cursorVal = 0;
-        for (AwardRateInfo awardRateInfo : differenceAwardRateList) {
+        for (AwardRateVO awardRateInfo : differenceAwardRateList) {
             int rateVal = awardRateInfo.getAwardRate()
                     .divide(differenceDenominator, 2, BigDecimal.ROUND_UP)
                     .multiply(new BigDecimal(100))

@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import top.dacchen.lottery.common.Constants;
 import top.dacchen.lottery.common.DrawState;
 import top.dacchen.lottery.domain.award.model.req.GoodsReq;
 import top.dacchen.lottery.domain.award.model.res.DistributionRes;
@@ -15,7 +14,7 @@ import top.dacchen.lottery.domain.award.service.factory.DistributionGoodsFactory
 import top.dacchen.lottery.domain.award.service.goods.IDistributionGoods;
 import top.dacchen.lottery.domain.strategy.model.req.DrawReq;
 import top.dacchen.lottery.domain.strategy.model.res.DrawResult;
-import top.dacchen.lottery.domain.strategy.model.vo.DrawAwardInfo;
+import top.dacchen.lottery.domain.strategy.model.vo.DrawAwardVO;
 import top.dacchen.lottery.domain.strategy.service.draw.IDrawExec;
 import top.dacchen.lottery.infrastructure.dao.IActivityDao;
 import top.dacchen.lottery.infrastructure.po.Activity;
@@ -65,7 +64,7 @@ public class SpringRunnerTest {
         }
 
         // 封装发奖参数，orderId：2109313442431 为模拟ID，需要在用户参与领奖活动时生成
-        DrawAwardInfo drawAwardInfo = drawResult.getDrawAwardInfo();
+        DrawAwardVO drawAwardInfo = drawResult.getDrawAwardInfo();
         GoodsReq goodsReq = new GoodsReq(drawResult.getuId(), "2109313442431", drawAwardInfo.getAwardId(), drawAwardInfo.getAwardName(), drawAwardInfo.getAwardContent());
 
         // 根据 awardType 从抽奖工厂中获取对应的发奖服务

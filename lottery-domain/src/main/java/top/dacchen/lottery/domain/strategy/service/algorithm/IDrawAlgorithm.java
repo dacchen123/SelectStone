@@ -1,6 +1,6 @@
 package top.dacchen.lottery.domain.strategy.service.algorithm;
 
-import top.dacchen.lottery.domain.strategy.model.vo.AwardRateInfo;
+import top.dacchen.lottery.domain.strategy.model.vo.AwardRateVO;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public interface IDrawAlgorithm {
      * @param strategyId
      * @param awardRateInfoList
      */
-    void initRateTuple(Long strategyId, List<AwardRateInfo> awardRateInfoList);
+    void initRateTuple(Long strategyId, List<AwardRateVO> awardRateInfoList);
 
     /**
      * 判断是否已经做了数据初始化

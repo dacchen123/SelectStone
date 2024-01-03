@@ -1,6 +1,6 @@
 package top.dacchen.lottery.domain.strategy.service.algorithm;
 
-import top.dacchen.lottery.domain.strategy.model.vo.AwardRateInfo;
+import top.dacchen.lottery.domain.strategy.model.vo.AwardRateVO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -24,10 +24,10 @@ public abstract class BaseAlgorithm implements IDrawAlgorithm{
     protected Map<Long, String[]> rateTupleMap = new ConcurrentHashMap<>();
 
     // 奖品区间概率值，strategyId -> [awardId->begin、awardId->end]
-    protected Map<Long, List<AwardRateInfo>> awardRateInfoMap = new ConcurrentHashMap<>();
+    protected Map<Long, List<AwardRateVO>> awardRateInfoMap = new ConcurrentHashMap<>();
 
     @Override
-    public void initRateTuple(Long strategyId, List<AwardRateInfo> awardRateInfoList) {
+    public void initRateTuple(Long strategyId, List<AwardRateVO> awardRateInfoList) {
         //TODO 此方法中的内容还需理解
         // 个人理解：在strategy对应的数组String[] rateTuple中将各个范围值都填充为奖品id即awardId
         //         在抽奖算法实现中如SingleRateRandomDrawAlgorithm生产随机数后直接在rateTuple中取得awardId，时间为O(1)
@@ -39,7 +39,7 @@ public abstract class BaseAlgorithm implements IDrawAlgorithm{
 
         int cursorVal = 0;
 
-        for (AwardRateInfo awardRateInfo : awardRateInfoList) {
+        for (AwardRateVO awardRateInfo : awardRateInfoList) {
             int rateVal = awardRateInfo.getAwardRate().multiply(new BigDecimal(100)).intValue();
 
             // 循环填充概率范围值
